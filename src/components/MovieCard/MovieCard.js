@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './MovieCard.module.css';
 
 export default function MovieCard({ movie }) {
@@ -21,9 +22,13 @@ export default function MovieCard({ movie }) {
 
         <h3 className={s.movieCard__title}>Genres</h3>
         <span className={s.movieCard__genres}>
-          {genres.map(gen => gen.name)}
+          {genres.map(gen => gen.name).join(', ')}
         </span>
       </div>
     </div>
   );
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.object,
+};

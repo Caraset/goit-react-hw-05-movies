@@ -18,6 +18,18 @@ async function getMovieById(movieId) {
   return parsedRespons;
 }
 
+async function getMovieByQuery(query) {
+  if (!query) {
+    return;
+  }
+  const respons = await fetch(
+    `${URL}search/movie?api_key=${KEY}&query=${query}`,
+  );
+
+  const parsedRespons = await respons.json();
+  return parsedRespons.results;
+}
+
 async function getMovieCast(movieId) {
   const respons = await fetch(`${URL}/movie/${movieId}/credits?api_key=${KEY}`);
 
@@ -25,6 +37,17 @@ async function getMovieCast(movieId) {
   return parsedRespons;
 }
 
-// {movie_id}/credits?api_key=<<api_key>>&language=en-US
+async function getMovieRewiews(movieId) {
+  const respons = await fetch(`${URL}/movie/${movieId}/reviews?api_key=${KEY}`);
 
-export { getTrendingMovies, getMovieById, getMovieCast };
+  const parsedRespons = await respons.json();
+  return parsedRespons.results;
+}
+
+export {
+  getTrendingMovies,
+  getMovieById,
+  getMovieCast,
+  getMovieRewiews,
+  getMovieByQuery,
+};

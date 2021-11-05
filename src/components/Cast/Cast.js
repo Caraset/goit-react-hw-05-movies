@@ -13,7 +13,6 @@ export default function Cast() {
     getMovieCast(param.movieId).then(({ cast }) => setCast(cast));
   }, [param.movieId]);
 
-  console.log(cast);
   return (
     cast && (
       <ul className={s.cast}>

@@ -8,11 +8,16 @@
   text-decoration: none;
   padding: 12px;
   font-weight: 500;
-  color: #2a363b;
+  color: #4863ff;
   font-size: 18px;
+}
+
+.nav__link:hover {
+  color: #3995ff;
 }
 
 .nav__link_active {
   composes: nav__link;
-  color: red;
+  color: #3995ff;
+  text-decoration: underline;
 }

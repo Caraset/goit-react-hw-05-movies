@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './ActorCard.module.css';
 
 export default function ActorCard({ actor }) {
@@ -16,3 +17,7 @@ export default function ActorCard({ actor }) {
     </div>
   );
 }
+
+ActorCard.propTypes = {
+  actor: PropTypes.object,
+};

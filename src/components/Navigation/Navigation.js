@@ -17,7 +17,10 @@ const Navigation = () => (
       </li>
       <li className={s.nav__item}>
         <NavLink
-          to="movies"
+          to={{
+            pathname: 'movies',
+            state: 5,
+          }}
           className={({ isActive }) =>
             isActive ? s.nav__link_active : s.nav__link
           }
