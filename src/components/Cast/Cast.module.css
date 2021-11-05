@@ -1,0 +1,17 @@
+.cast {
+  margin-top: -15px;
+  margin-right: -15px;
+
+  padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  list-style: none;
+}
+
+.cast__item {
+  margin-top: 15px;
+  margin-right: 15px;
+  flex-basis: calc(100% / 3 - 15px);
+}

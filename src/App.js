@@ -5,6 +5,8 @@ import Container from './components/Container/Container';
 import AppBar from './components/AppBar/AppBar';
 // import HomeView from './views/HomeView';
 import TrendingMovies from './views/TrendingMovies';
+import MovieView from './views/MovieView';
+import MoviesSearch from './views/MoviesSearch';
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
       <AppBar />
 
       <Routes>
-        <Route path="/" element={<TrendingMovies />} />
+        <Route end path="/" element={<TrendingMovies />} />
+        <Route end path="movies" element={<MoviesSearch />} />
+        <Route path=":movieId/*" element={<MovieView />} />
 
         {/* <Route path="/authors">
           <AuthorsView />

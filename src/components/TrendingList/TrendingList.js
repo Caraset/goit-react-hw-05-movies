@@ -1,4 +1,3 @@
-import { getTrendingMovies } from '../../services/api';
 import { Link } from 'react-router-dom';
 import s from './TrendingList.module.css';
 

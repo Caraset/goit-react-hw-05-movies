@@ -3,13 +3,28 @@ const URL = `https://api.themoviedb.org/3/`;
 
 async function getTrendingMovies(pageNum) {
   const firstRespons = await fetch(
-    `${URL}/trending/all/day?api_key=${KEY}&page=${pageNum}`,
+    `${URL}/trending/movie/day?api_key=${KEY}&page=${pageNum}`,
   );
 
   const parsedRespons = await firstRespons.json();
 
-  console.log('parsedRespons.results: ', parsedRespons.results);
   return parsedRespons.results;
 }
 
-export { getTrendingMovies };
+async function getMovieById(movieId) {
+  const respons = await fetch(`${URL}/movie/${movieId}?api_key=${KEY}`);
+
+  const parsedRespons = await respons.json();
+  return parsedRespons;
+}
+
+async function getMovieCast(movieId) {
+  const respons = await fetch(`${URL}/movie/${movieId}/credits?api_key=${KEY}`);
+
+  const parsedRespons = await respons.json();
+  return parsedRespons;
+}
+
+// {movie_id}/credits?api_key=<<api_key>>&language=en-US
+
+export { getTrendingMovies, getMovieById, getMovieCast };
