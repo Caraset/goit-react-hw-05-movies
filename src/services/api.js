@@ -1,47 +1,52 @@
-const KEY = '94f703750c3e0771d8c2babc592efc94';
-const URL = `https://api.themoviedb.org/3/`;
+import axios from 'axios';
 
-async function getTrendingMovies(pageNum) {
-  const firstRespons = await fetch(
-    `${URL}/trending/movie/day?api_key=${KEY}&page=${pageNum}`,
-  );
+const movieDbApi = axios.create({
+  baseURL: 'https://api.themoviedb.org/3/',
+  params: {
+    api_key: '94f703750c3e0771d8c2babc592efc94',
+  },
+});
 
-  const parsedRespons = await firstRespons.json();
+async function getTrendingMovies(page) {
+  const params = {
+    page,
+  };
 
-  return parsedRespons.results;
+  const respons = await movieDbApi.get(`/trending/movie/day`, { params });
+
+  return respons.data.results;
 }
 
 async function getMovieById(movieId) {
-  const respons = await fetch(`${URL}/movie/${movieId}?api_key=${KEY}`);
+  const respons = await movieDbApi.get(`/movie/${movieId}`);
 
-  const parsedRespons = await respons.json();
-  return parsedRespons;
+  return respons.data;
 }
 
 async function getMovieByQuery(query) {
   if (!query) {
     return;
   }
-  const respons = await fetch(
-    `${URL}search/movie?api_key=${KEY}&query=${query}`,
-  );
 
-  const parsedRespons = await respons.json();
-  return parsedRespons.results;
+  const params = {
+    query,
+  };
+
+  const respons = await movieDbApi.get('search/movie', { params });
+
+  return respons.data.results;
 }
 
 async function getMovieCast(movieId) {
-  const respons = await fetch(`${URL}/movie/${movieId}/credits?api_key=${KEY}`);
+  const respons = await movieDbApi(`/movie/${movieId}/credits`);
 
-  const parsedRespons = await respons.json();
-  return parsedRespons;
+  return respons.data;
 }
 
 async function getMovieRewiews(movieId) {
-  const respons = await fetch(`${URL}/movie/${movieId}/reviews?api_key=${KEY}`);
+  const respons = await movieDbApi(`/movie/${movieId}/reviews`);
 
-  const parsedRespons = await respons.json();
-  return parsedRespons.results;
+  return respons.data.results;
 }
 
 export {
